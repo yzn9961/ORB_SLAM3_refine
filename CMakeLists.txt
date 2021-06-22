@@ -191,4 +191,46 @@ add_executable(stereo_inertial_tum_vi
 Examples/Stereo-Inertial/stereo_inertial_tum_vi.cc)
 target_link_libraries(stereo_inertial_tum_vi ${PROJECT_NAME})
 
+#单目 生成调用摄像头可执行文件
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my1cam)
+add_executable(my1cam my1cam/my1cam.cpp)
+target_link_libraries(my1cam ${PROJECT_NAME})
 
+#双目 生成调用摄像头可执行文件
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my2cam)
+add_executable(my2cam my2cam/my2cam.cpp)
+target_link_libraries(my2cam ${PROJECT_NAME})
+
+# 单目读取视频
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my1video)
+add_executable(my1video my1video/my1video.cpp)
+target_link_libraries(my1video ${PROJECT_NAME})
+# 双目读取视频
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my2video)
+add_executable(my2video my2video/my2video.cpp)
+target_link_libraries(my2video ${PROJECT_NAME})
+
+#  RGB-D读取图像序列--官方例程版
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/myDepth)
+add_executable(myDepth myDepth/myDepth.cpp)
+target_link_libraries(myDepth ${PROJECT_NAME})
+
+#  RGB-D读取图像序列 手写版
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/myRGBD)
+add_executable(myRGBD myRGBD/myRGBD.cpp)
+target_link_libraries(myRGBD ${PROJECT_NAME})
+
+# 使用RGB-D采集到的数据集运行单目SLAM
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/myRGB)
+add_executable(myRGB myRGB/myRGB.cpp)
+target_link_libraries(myRGB ${PROJECT_NAME})
+
+# 单目读取稳像
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my1stab)
+add_executable(my1stab my1stab/my1stab.cpp)
+target_link_libraries(my1stab ${PROJECT_NAME})
+
+# 双目读取稳像
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my2stab)
+add_executable(my2stab my2stab/my2stab.cpp)
+target_link_libraries(my2stab ${PROJECT_NAME})
