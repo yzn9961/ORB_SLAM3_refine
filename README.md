@@ -1,3 +1,36 @@
+# 本项目是对ORB-SLAM3(V0.3)的改写
+
+新增了几个接口函数用于读取单目、双目、RGB-D视频流进行在线/离线SLAM建图
+
+包含下述接口程序：
+
+**单目**
+
+- 读取单目摄像头`my1cam`
+- 读取单目视频`my1video`
+
+**双目**
+
+- 读取双目摄像头`my2cam`
+- 读取双目视频`my2video`
+
+**RGB-D**
+
+- RGB-D读取官方数据集`myDepth`
+- RGB-D读取`Astra pro`深度相机拍摄的视频`myRGBD`
+- 只使用RGB-D捕捉到的RGB信息进行建图`myRGB`
+
+**SLAM运行稳像后视频**(效果差，放弃)
+
+- 单目读取稳像`my1stab`
+- 双目读取稳像`my2stab`
+
+
+
+出于大小考虑，拍摄数据集以及标定文件未上传。程序仅作参考，需要根据具体需求更改。
+
+
+
 # ORB-SLAM3
 
 ### V0.3: Beta version, 4 Sep 2020
@@ -146,14 +179,14 @@ and add at the end the following line. Replace PATH by the folder where you clon
   ```
   export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:PATH/ORB_SLAM3/Examples/ROS
   ```
-  
+
 2. Execute `build_ros.sh` script:
 
   ```
   chmod +x build_ros.sh
   ./build_ros.sh
   ```
-  
+
 ### Running Monocular Node
 For a monocular input from topic `/camera/image_raw` run node ORB_SLAM3/Mono. You will need to provide the vocabulary file and a settings file. See the monocular examples above.
 
@@ -181,7 +214,7 @@ For a stereo input from topics `/camera/left/image_raw` and `/camera/right/image
   ```
   rosrun ORB_SLAM3 Stereo_Inertial PATH_TO_VOCABULARY PATH_TO_SETTINGS_FILE ONLINE_RECTIFICATION [EQUALIZATION]	
   ```
-  
+
 ### Running RGB_D Node
 For an RGB-D input from topics `/camera/rgb/image_raw` and `/camera/depth_registered/image_raw`, run node ORB_SLAM3/RGBD. You will need to provide the vocabulary file and a settings file. See the RGB-D example above.
 
@@ -193,15 +226,15 @@ For an RGB-D input from topics `/camera/rgb/image_raw` and `/camera/depth_regist
   ```
   roscore
   ```
-  
+
   ```
   rosrun ORB_SLAM3 Stereo_Inertial Vocabulary/ORBvoc.txt Examples/Stereo-Inertial/EuRoC.yaml true
   ```
-  
+
   ```
   rosbag play --pause V1_02_medium.bag /cam0/image_raw:=/camera/left/image_raw /cam1/image_raw:=/camera/right/image_raw /imu0:=/imu
   ```
-  
+
 Once ORB-SLAM3 has loaded the vocabulary, press space in the rosbag tab.
 
 **Remark:** For rosbags from TUM-VI dataset, some play issue may appear due to chunk size. One possible solution is to rebag them with the default chunk size, for example:
