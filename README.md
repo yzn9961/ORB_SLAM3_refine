@@ -20,7 +20,7 @@
 - RGB-D读取`Astra pro`深度相机拍摄的视频`myRGBD`
 - 只使用RGB-D捕捉到的RGB信息进行建图`myRGB`
 
-**SLAM运行稳像后视频**(效果差，放弃)
+**SLAM运行稳像后视频**
 
 - 单目读取稳像`my1stab`
 - 双目读取稳像`my2stab`
